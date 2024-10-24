@@ -1,4 +1,4 @@
-let startTime, updatedTime, difference;
+let startTime, updatedTime, difference = 0;
 let interval;
 let running = false;
 let hours = 0, minutes = 0, seconds = 0, milliseconds = 0;
@@ -10,10 +10,10 @@ const pauseBtn = document.getElementById('pause-btn');
 const resetBtn = document.getElementById('reset-btn');
 const lapBtn = document.getElementById('lap-btn');
 
-const hoursDisplay = document.getElementById('hours');
-const minutesDisplay = document.getElementById('minutes');
-const secondsDisplay = document.getElementById('seconds');
-const millisecondsDisplay = document.getElementById('milliseconds');
+const hrDis = document.getElementById('hours');
+const minDis = document.getElementById('minutes');
+const secDis = document.getElementById('seconds');
+const millisecDis = document.getElementById('milliseconds');
 const lapsList = document.getElementById('laps-list');
 
 function startStopwatch() {
@@ -43,7 +43,6 @@ function resetStopwatch() {
 
 function lapStopwatch() {
     if (running) {
-        // Record the current time difference since the last lap
         const currentLapTime = difference - previousLapTime;
         previousLapTime = difference;
 
@@ -71,10 +70,10 @@ function updateTime() {
 }
 
 function updateDisplay() {
-    hoursDisplay.textContent = formatNumber(hours);
-    minutesDisplay.textContent = formatNumber(minutes);
-    secondsDisplay.textContent = formatNumber(seconds);
-    millisecondsDisplay.textContent = formatNumber(milliseconds);
+    hrDis.textContent = formatNumber(hours);
+    minDis.textContent = formatNumber(minutes);
+    secDis.textContent = formatNumber(seconds);
+    millisecDis.textContent = formatNumber(milliseconds);
 }
 
 function displayLaps() {

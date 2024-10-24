@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="stopwatch-container">
-        <h1>Stopwatch</h1>
-        <div class="stopwatch">
-            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>.<span id="milliseconds">00</span>
-        </div>
-        <div class="controls">
-            <button id="start-btn">Start</button>
-            <button id="pause-btn">Pause</button>
-            <button id="reset-btn">Reset</button>
-            <button id="lap-btn">Lap</button>
-        </div>
-        <div class="laps">
-            <h2>Laps</h2>
-            <ul id="laps-list"></ul>
+    <h1 class="header">Stopwatch</h1>
+    <div class="outer">
+        <div class="stopwatch-container">
+            <div class="stopwatch">
+                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>.<span id="milliseconds">00</span>
+            </div>
+            <div class="controls">
+                <button id="start-btn">Start</button>
+                <button id="pause-btn">Pause</button>
+                <button id="reset-btn">Reset</button>
+                <button id="lap-btn">Lap</button>
+            </div>
+            <div class="laps">
+                <h2>Laps</h2>
+                <ul id="laps-list"></ul>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
