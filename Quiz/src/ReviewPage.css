@@ -1,0 +1,45 @@
+.review-page {
+    text-align: left;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #494646; /* White background for review page */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    border-radius: 8px;
+  }
+  
+  .review-page h2 {
+    font-size: 1.8rem;
+    color: #e9e6e6;
+    margin-bottom: 20px;
+  }
+  
+  .review-page ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .review-page li {
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light gray background for each question */
+  }
+  
+  .review-page p {
+    margin: 5px 0;
+  }
+  
+  .review-page p:nth-child(3) {
+    font-weight: bold; /* Bold for the correct answer */
+  }
+  
+  .review-page p.correct {
+    color: green; /* Color for correct answers */
+  }
+  
+  .review-page p.incorrect {
+    color: red; /* Color for incorrect answers */
+  }
+  

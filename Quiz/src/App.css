@@ -1,0 +1,86 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e9ecef; /* Light gray background */
+  margin: 0;
+  padding: 0;
+  background-color: rgb(157, 185, 245);
+}
+
+.app {
+  text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 50px auto; /* Added margin for spacing */
+  background: rgb(219, 192, 192); /* White background for the quiz container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly darker shadow */
+  border-radius: 8px;
+}
+
+.quiz-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.question-section {
+  margin-bottom: 20px;
+}
+
+.question-count {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.question-text {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+.answer-section {
+  display: flex;
+  justify-content: center; /* Aligns buttons to the center */
+  gap: 20px; /* Adds space between the buttons */
+  margin-top: 20px;
+  width: 100%; 
+  /* flex-direction: row;
+  align-items: center; */
+}
+
+.choice-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.choice-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.choice-button.selected {
+  background-color: #28a745; /* Green when selected */
+}
+
+.next-button {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.next-button:disabled {
+  background-color: #6c757d; /* Gray when disabled */
+  cursor: not-allowed;
+}
+
+.next-button:hover:not(:disabled) {
+  background-color: #138496; /* Darker blue on hover */
+}
