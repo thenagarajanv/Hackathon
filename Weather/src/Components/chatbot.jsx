@@ -8,12 +8,12 @@ const Chatbot = ({ weatherData }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (query.trim() === '') return;
-    };
-    const getResponse = (query) => {
-        const lowerQuery = query.toLower
         const response = getResponse(query);
         setResponses([...responses, { user: query, bot: response }]);
-        setQuery('');Case();
+        setQuery('');
+    };
+    const getResponse = (query) => {
+        const lowerQuery = query.toLowerCase();
         if (lowerQuery.includes("temperature")) {
             return `The temperature in ${weatherData.name} is ${weatherData.main.temp} °C.`;
         } else if (lowerQuery.includes("humidity")) {
