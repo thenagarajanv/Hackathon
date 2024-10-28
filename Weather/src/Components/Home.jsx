@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import sunny from '../sunny.jpg';
 import rainy from '../rainy.jpg';
@@ -13,29 +13,67 @@ const Home = () => {
     const [error, setError] = useState('');
     const [chatVisible, setChatVisible] = useState(false); 
     const API_KEY = '4d8fb5b93d4af21d66a2948710284366';
-    const fetchWeather = async () => {
+
+    useEffect(() => {
+        getCurrentLocationWeather();
+    }, []);
+
+    const fetchWeather = async (latitude, longitude) => {
+        try {
+            const response = await axios.get(
+                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+            );
+            setWeatherData(response.data);
+            setError('');
+        } catch (err) {
+            setError('Unable to fetch weather data');
+            setWeatherData(null);
+        }
+    };
+
+    const getCurrentLocationWeather = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    fetchWeather(latitude, longitude);
+                },
+                () => {
+                    setError('Geolocation not supported or permission denied');
+                }
+            );
+        } else {
+            setError('Geolocation not supported');
+        }
+    };
+
+    const fetchWeatherByCity = async () => {
         if (!city) return;
         try {
-            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
+            const response = await axios.get(
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+            );
             setWeatherData(response.data);
-            console.log(response.data);
             setError('');
         } catch (err) {
             setError('City not found');
             setWeatherData(null);
         }
     };
+
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            fetchWeather();
+            fetchWeatherByCity();
         }
     };
+
     const getBackgroundImage = () => {
         if (!weatherData) return back1;
         if (weatherData.weather[0].description.includes('rain')) return rainy;
         if (weatherData.weather[0].description.includes('cloud')) return cloud;
         return sunny;
     };
+
     return (
         <div style={{
             backgroundImage: `url(${getBackgroundImage()})`,
@@ -46,7 +84,7 @@ const Home = () => {
             width: '100vw',
             overflow: 'hidden',
         }}>
-            <div className="container text-center mt-5 fullscreen-background" style={{color:'black'}}>
+            <div className="container text-center mt-5 fullscreen-background" style={{ color: 'black' }}>
                 <h1 className="mb-4">Finest Weather's</h1>
                 <div className="input-group">
                     <input
@@ -58,8 +96,9 @@ const Home = () => {
                         placeholder="Enter city name"
                     />
                     <div className="input-group-append">
-                        <button className="btn btn-primary" onClick={fetchWeather}>Get Weather</button>
+                        <button className="btn btn-primary" onClick={fetchWeatherByCity}>Get Weather</button>
                     </div>
+                    <button className="btn btn-secondary ml-2" onClick={getCurrentLocationWeather}>Get Current Location Weather</button>
                 </div>
                 {error && <p className="text-danger">{error}</p>}
                 {weatherData && (
@@ -82,4 +121,5 @@ const Home = () => {
         </div>
     );
 };
+
 export default Home;
