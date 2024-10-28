@@ -3,9 +3,10 @@ import axios from 'axios';
 import sunny from '../sunny.jpg';
 import rainy from '../rainy.jpg';
 import cloud from '../cloudy.jpeg';
-import back1 from '../back1.jpeg';
+import back1 from '../cloud.jpeg';
 import Chatbot from './chatbot'; 
 import './Home.css';
+
 const Home = () => {
     const [city, setCity] = useState('');
     const [weatherData, setWeatherData] = useState(null);
@@ -46,7 +47,7 @@ const Home = () => {
             overflow: 'hidden',
         }}>
             <div className="container text-center mt-5 fullscreen-background" style={{color:'black'}}>
-                <h1 className="mb-4">Weather App</h1>
+                <h1 className="mb-4">Finest Weather's</h1>
                 <div className="input-group">
                     <input
                         type="text"
@@ -69,11 +70,6 @@ const Home = () => {
                         <p>Pressure: {weatherData.main.pressure} hPa</p>
                         <p>Wind Speed: {weatherData.wind.speed} m/s</p>
                         <p>Wind Direction: {weatherData.wind.deg}°</p>
-                        <p>Weather Conditions: {weatherData.weather[0].description}</p>
-                        <img
-                            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-                            alt={weatherData.weather[0].description}
-                        />
                         <p>Coordinates: {weatherData.coord.lat}° N, {weatherData.coord.lon}° E</p>
                         <p>Cloudiness: {weatherData.clouds.all}%</p>
                     </div>

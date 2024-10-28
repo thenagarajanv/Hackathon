@@ -8,19 +8,22 @@ const Chatbot = ({ weatherData }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (query.trim() === '') return;
-        const response = getResponse(query);
-        setResponses([...responses, { user: query, bot: response }]);
-        setQuery('');
     };
     const getResponse = (query) => {
-        const lowerQuery = query.toLowerCase();
+        const lowerQuery = query.toLower
+        const response = getResponse(query);
+        setResponses([...responses, { user: query, bot: response }]);
+        setQuery('');Case();
         if (lowerQuery.includes("temperature")) {
             return `The temperature in ${weatherData.name} is ${weatherData.main.temp} °C.`;
         } else if (lowerQuery.includes("humidity")) {
             return `The humidity in ${weatherData.name} is ${weatherData.main.humidity}%.`;
         } else if (lowerQuery.includes("weather")) {
             return `The weather is currently: ${weatherData.weather[0].description}.`;
-        } else if (lowerQuery.includes("wind speed")) {
+        }else if (lowerQuery.includes("pressure")) {
+            return `The Pressure is currently: ${weatherData.main.pressure} hPa`;
+        }  
+        else if (lowerQuery.includes("wind speed")) { 
             return `The wind speed is ${weatherData.wind.speed} m/s.`;
         } else if (lowerQuery.includes("location")) {
             return `You are in ${weatherData.name}, ${weatherData.sys.country}.`;
@@ -30,12 +33,12 @@ const Chatbot = ({ weatherData }) => {
     };
     return (
         <div className="chatbot-container">
-            <h2>Weather Chatbot</h2>
+            <h2>Anything Wanna Ask ?</h2>
             <div className="chatbox">
                 {responses.map((response, index) => (
                     <div key={index}>
                         <p><strong>You:</strong> {response.user}</p>
-                        <p><strong>Bot:</strong> {response.bot}</p>
+                        <p><strong>Finest Bot:</strong> {response.bot}</p>
                     </div>
                 ))}
             </div>
